@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Preloader
    */
-  const preloader = document.querySelector('#preloader');
+  const preloader = document.getElementById('preloader');
   if (preloader) {
     window.addEventListener('load', () => {
       preloader.remove();
@@ -80,14 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollTop = document.querySelector('.scroll-top');
   if (scrollTop) {
     const togglescrollTop = function() {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+      scrollTop.classList.toggle('active', window.scrollY > 100);
     }
     window.addEventListener('load', togglescrollTop);
     document.addEventListener('scroll', togglescrollTop);
-    scrollTop.addEventListener('click', window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    }));
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
   }
 
   /**
